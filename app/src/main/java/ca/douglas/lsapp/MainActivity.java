@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 btnSignOut.setEnabled(true);
             }
             else {
-                Toast.makeText(this, "Algo deu errado: \n"+resp.getError().getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Something is wrong: \n"+resp.getError().getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
