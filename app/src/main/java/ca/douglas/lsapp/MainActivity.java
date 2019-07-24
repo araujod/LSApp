@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 btnSignOut.setEnabled(false);
-                                tvUserName.setText("Login First!");
+                                tvUserName.setText("Please login first!");
                                 showSignInOptions();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -185,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
                                 Commom.currentUser.setBirthday(edtBirthdate.getText().toString());
                                 Commom.currentUser.setType(User.CLIENT_TYPE);//Always Client when created trough app
                                 tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
+                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                finish();
 
                             }
                         })
@@ -225,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
                         tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        finish();
                     } else {
                         Log.d(TAG, "User not found");
                         //If no user is found, show the Register dialog
