@@ -38,7 +38,10 @@ import java.util.List;
 import java.util.Map;
 
 import ca.douglas.lsapp.DB.User;
+import ca.douglas.lsapp.Shared.Commom;
 import dmax.dialog.SpotsDialog;
+
+import static ca.douglas.lsapp.Shared.Commom.currentUser;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1111; //Define any number
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db;
     String userCollection = "users";
-    User currentUser = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
         showSignInOptions();
-
-
     }
 
     private void showSignInOptions() {
@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 user.put("Name", edtName.getText().toString());
                 user.put("Address", edtAddress.getText().toString());
                 user.put("Birthdate", edtBirthdate.getText().toString());
+                user.put("Type", User.CLIENT_TYPE); //Always Client when created trough app
 
                 Log.d("Register", "Content added");
                 // Add a new document with User ID authenticated
@@ -179,10 +180,11 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Register", "Success");
                                 Toast.makeText(MainActivity.this, "User successfully registered!", Toast.LENGTH_SHORT).show();
                                 Log.d("Register", "User successfully registered!");
-                                currentUser.setAddress(edtAddress.getText().toString());
-                                currentUser.setName(edtName.getText().toString());
-                                currentUser.setBirthday(edtBirthdate.getText().toString());
-                                tvUserName.setText("Welcome\n"+currentUser.getName()+"\nAddress:"+currentUser.getAddress());
+                                Commom.currentUser.setAddress(edtAddress.getText().toString());
+                                Commom.currentUser.setName(edtName.getText().toString());
+                                Commom.currentUser.setBirthday(edtBirthdate.getText().toString());
+                                Commom.currentUser.setType(User.CLIENT_TYPE);//Always Client when created trough app
+                                tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
 
                             }
                         })
@@ -218,10 +220,11 @@ public class MainActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "User found data: " + document.getData());
-                        currentUser.setAddress(document.getString("Address"));
-                        currentUser.setName(document.getString("Name"));
-                        currentUser.setBirthday(document.getString("Birthdate"));
-                        tvUserName.setText("Welcome\n"+currentUser.getName()+"\nAddress:"+currentUser.getAddress());
+                        Commom.currentUser.setAddress(document.getString("Address"));
+                        Commom.currentUser.setName(document.getString("Name"));
+                        Commom.currentUser.setBirthday(document.getString("Birthdate"));
+                        Commom.currentUser.setType(document.getString("Type"));
+                        tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
                     } else {
                         Log.d(TAG, "User not found");
                         //If no user is found, show the Register dialog
