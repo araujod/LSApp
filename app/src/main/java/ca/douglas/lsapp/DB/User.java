@@ -2,11 +2,11 @@ package ca.douglas.lsapp.DB;
 
 public class User {
     public final static String CLIENT_TYPE = "C";
-    public final static String RESTAURANT_TYPE = "R"; //This type should be changed manually
+    public final static String STORE_TYPE = "S"; //This type should be changed manually
     private String name;
     private String address;
     private String birthday;
-    private String type;//"C" for client and "R" for restaurant manager
+    private String type;//"C" for client and "S" for store manager
 
     public String getName() {
         return name;

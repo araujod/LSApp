@@ -41,8 +41,7 @@ public class DownloadService extends IntentService {
 
         // do some work
         //ALWAYS CHECK IF THE LINK IS UP-TO-DATE
-        String site = "http://ec2-3-84-146-99.compute-1.amazonaws.com:8000/DELETE";
-
+        String site = "http://ec2-3-83-41-215.compute-1.amazonaws.com:8000/GET_ALL";
 
         String results = getRemoteData(site,params);
 
@@ -52,7 +51,7 @@ public class DownloadService extends IntentService {
         // An action name, such as ACTION_VIEW.
         // Application-specific actions should be prefixed with the vendor's package name.
         broadcast.setAction(DBConnectivity.STATUS_DONE);
-       // Log.d("id",results);
+        Log.d("id",results);
         broadcast.putExtra("output_data",results);
         sendBroadcast(broadcast);
     }
@@ -85,7 +84,7 @@ public class DownloadService extends IntentService {
             URL u = new URL(site);
             c = (HttpURLConnection) u.openConnection();
             c.setRequestMethod("POST");
-            c.setDoInput(true);            // receiving data from the web
+            c.setDoInput(true);             // receiving data from the web
             c.setDoOutput(true);            // application sending data to the web
 
             //passing the data to the server

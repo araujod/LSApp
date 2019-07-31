@@ -227,11 +227,12 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
                         tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
-                        if (Commom.currentUser.getType()=="C") //Customer
+                        if (Commom.currentUser.getType().equals(User.CLIENT_TYPE)) { //Customer
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                        else //Store
+                        } else { //Store
                             startActivity(new Intent(MainActivity.this, StoreManagement.class));
-                        //finish();
+                        }
+                        finish();
                     } else {
                         Log.d(TAG, "User not found");
                         //If no user is found, show the Register dialog
