@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         else //Store
                             startActivity(new Intent(MainActivity.this, StoreManagement.class));
-                        finish();
+                        //finish();
                     } else {
                         Log.d(TAG, "User not found");
                         //If no user is found, show the Register dialog
