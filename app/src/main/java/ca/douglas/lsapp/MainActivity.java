@@ -227,7 +227,10 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
                         tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
-                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        if (Commom.currentUser.getType()=="C") //Customer
+                            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        else //Store
+                            startActivity(new Intent(MainActivity.this, StoreManagement.class));
                         finish();
                     } else {
                         Log.d(TAG, "User not found");

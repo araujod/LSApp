@@ -11,7 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import ca.douglas.lsapp.R;
-
+/*
 public class MainActivityTEST extends AppCompatActivity {
 
     private DBConnectivity receiver;
@@ -62,13 +62,13 @@ public class MainActivityTEST extends AppCompatActivity {
         super.onResume();
         // An IntentFilter can match against actions, categories, and data
         IntentFilter filter = new IntentFilter(DBConnectivity.STATUS_DONE);
-          /*
-        Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
-        Register a BroadcastReceiver to be run in the main activity thread.
-        The receiver will be called with any broadcast Intent that matches filter,
-        in the main application thread.
-         */
+
+        //Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
+        //Register a BroadcastReceiver to be run in the main activity thread.
+        //The receiver will be called with any broadcast Intent that matches filter,
+        //in the main application thread.
 
         registerReceiver(receiver,filter);
     }
 }
+*/
