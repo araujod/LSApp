@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                waitingDialog.dismiss();
+                waitingDialog.dismiss();//Kill Waiting dialog
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
@@ -227,11 +227,11 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
                         tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
-                        if (Commom.currentUser.getType().equals(User.CLIENT_TYPE)) { //Customer
-                            startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                        } else { //Store
+                        if (Commom.currentUser.getType().equals(User.CLIENT_TYPE)) //Customer
+                            //startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                            startActivity(new Intent(MainActivity.this, ClientHome.class));
+                        else //Store
                             startActivity(new Intent(MainActivity.this, StoreManagement.class));
-                        }
                         finish();
                     } else {
                         Log.d(TAG, "User not found");

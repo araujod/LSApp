@@ -13,6 +13,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
+
+import ca.douglas.lsapp.Shared.Commom;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,9 +38,16 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        TextView tvUserName = findViewById(R.id.tvUserName);
+        TextView tvUserAddress = findViewById(R.id.tvUserAddress);
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        tvUserName.setText(Commom.currentUser.getName());
+        tvUserAddress.setText(Commom.currentUser.getAddress());
+
     }
 
     @Override

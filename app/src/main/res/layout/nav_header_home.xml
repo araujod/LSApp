@@ -26,7 +26,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/txtUserName"/>
+        android:id="@+id/tvUserName"/>
 
     <TextView
         android:id="@+id/tvUserAddress"

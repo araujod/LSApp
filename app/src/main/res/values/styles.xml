@@ -17,6 +17,10 @@
         <item name="android:windowBackground">@drawable/splash_drawable</item>
     </style>
 
+    <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
