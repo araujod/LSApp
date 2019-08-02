@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ca.douglas.lsapp.DownloadService.DBConnectivity;
 import ca.douglas.lsapp.DownloadService.DownloadService;
@@ -31,16 +33,48 @@ public class ProcessProducts extends AppCompatActivity {
     }
 
     private ArrayList<String> populateData() {
-        ArrayList<String> temp = new ArrayList<>();
+        final ArrayList<String> temp = new ArrayList<>();
 
         Intent i = new Intent(ProcessProducts.this, DownloadService.class);
         //i.putExtra("where_value",spin.getSelectedItem().toString());
         i.putExtra("table","Product");
         startService(i);
 
-        String []x = new String[42];
-        for (int ind = 0; ind < Commom.Products.length; ind++)
-        x[ind] = Commom.Products[ind][2];
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+
+
+        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+        waitingDialog.show();
+        waitingDialog.setMessage("Please wait...");
+
+        final String []x = new String[2];
+            x[0]="NOT CHANGED";
+
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                waitingDialog.dismiss();
+
+                Log.d("DB - onReceive","IM HERE22222!!");
+
+                for (int ind = 0; ind < Commom.Products.length; ind++) {
+                    x[ind] = Commom.Products[ind][2];
+                    Log.d("DB - COMMOM_PRODUCTS",x[ind]);
+                }
+
+            }
+        }, 2000);
+
+
+
+        Log.d("DB - I'M OUTSIDE!!!",x[0]);
 
         String s[] = {"Barnebas","Lynnet","Isabeau","Carolus","Odelinda"};
         for(String names: s)
@@ -68,5 +102,9 @@ public class ProcessProducts extends AppCompatActivity {
         //in the main application thread.
 
         registerReceiver(receiver,filter);
+
+        Log.d("DB - onReceive","IM HERE!!");
+
+
     }
 }
