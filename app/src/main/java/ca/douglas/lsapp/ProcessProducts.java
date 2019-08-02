@@ -1,10 +1,15 @@
 package ca.douglas.lsapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -17,84 +22,112 @@ import dmax.dialog.SpotsDialog;
 
 public class ProcessProducts extends AppCompatActivity {
 
-    private DBConnectivity receiver = new DBConnectivity(this);
+
+
+    private DBConnectivityProducts receiver = new DBConnectivityProducts(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process_products);
 
-        // assume the data is retrieve from somewhere
-        ArrayList<String> data = populateData();
-
-        ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
-        // passing the data to the MasterFragment
-        Log.d("onCreate","ProcessProducts");
-        m.setTheData(data);
-    }
-
-    private ArrayList<String> populateData() {
-        final ArrayList<String> temp = new ArrayList<>();
 
         Intent i = new Intent(ProcessProducts.this, DownloadService.class);
         //i.putExtra("where_value",spin.getSelectedItem().toString());
         i.putExtra("table","Product");
         startService(i);
 
-//        try {
-//            Thread.sleep(4000);
-//        } catch (InterruptedException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
 
 
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
-        waitingDialog.show();
-        waitingDialog.setMessage("Please wait...");
-
-        final String []x = new String[2];
-            x[0]="NOT CHANGED";
-
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                waitingDialog.dismiss();
-
-                Log.d("DB - onReceive","IM HERE22222!!");
-
-                for (int ind = 0; ind < Commom.Products.length; ind++) {
-                    x[ind] = Commom.Products[ind][2];
-                    Log.d("DB - COMMOM_PRODUCTS",x[ind]);
-                }
-
-            }
-        }, 2000);
-
-
-
-        Log.d("DB - I'M OUTSIDE!!!",x[0]);
-
-        String s[] = {"Barnebas","Lynnet","Isabeau","Carolus","Odelinda"};
-        for(String names: s)
-            temp.add(names);
-
-        return temp;
     }
+
+
+    public class DBConnectivityProducts extends BroadcastReceiver {
+
+        private Context context;
+        Context c;
+        public static final String STATUS_DONE = "ALL_DONE";
+
+        public DBConnectivityProducts(Context context) {
+            //this.result = result;
+            //this.tbl = tbl;
+            this.context = context;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(STATUS_DONE)) {
+
+                String text = intent.getStringExtra("output_data");
+
+
+                String columns[] = {"ProductID","Name","Description","Category","PictureURL","Price","Highlight"};
+                // String columns[] = {"StoreID","Email","Phone","Name","Address","LogoURL","Lat","Lng"};
+                Log.d("DB - onReceive",text);
+                String []p = new String[42];
+
+                try {
+                    Log.d("dataNEW",text);
+                    JSONArray ar = new JSONArray(text);
+                    JSONObject jobj;
+
+                    for (int x=0; x < ar.length(); x++) {
+                        jobj = ar.getJSONObject(x);
+                        // getting the columns
+                        for (int y=0; y < columns.length; y++) {
+                            Commom.Products[x][y] = jobj.getString(columns[y]);
+                        }
+                    }
+
+                    for (int ind = 0; ind < Commom.Products.length; ind++) {
+                        p[ind] = Commom.Products[ind][1];
+                        Log.d("DBNEW - COMMOM_PRODUCTS",p[ind]);
+                    }
+
+                    final ArrayList<String> temp = new ArrayList<>();
+
+                    for(String names: p)
+                        temp.add(names);
+
+
+
+                    ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
+                    // passing the data to the MasterFragment
+
+                    Log.d("onCreate","ProcessProducts");
+
+                    m.setTheData(temp);
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
 
     @Override
     protected void onPause() {
         // Unregister since the activity is paused.
         super.onPause();
         unregisterReceiver(receiver);
+        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+        waitingDialog.show();
+        waitingDialog.setMessage("Please wait...");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         // An IntentFilter can match against actions, categories, and data
-        IntentFilter filter = new IntentFilter(DBConnectivity.STATUS_DONE);
+        IntentFilter filter = new IntentFilter(DBConnectivityProducts.STATUS_DONE);
 
         //Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
         //Register a BroadcastReceiver to be run in the main activity thread.
@@ -103,7 +136,9 @@ public class ProcessProducts extends AppCompatActivity {
 
         registerReceiver(receiver,filter);
 
-        Log.d("DB - onReceive","IM HERE!!");
+        Log.d("DB - onReceive","IM HERE NEW!!");
+        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+        waitingDialog.dismiss();
 
 
     }

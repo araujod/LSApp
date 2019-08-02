@@ -52,6 +52,9 @@ public class DBConnectivity extends BroadcastReceiver {
                         Commom.Products[x][y] = jobj.getString(columns[y]);
                     }
                 }
+
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

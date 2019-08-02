@@ -12,6 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import ca.douglas.lsapp.ProcessProducts;
+
 
 /*
  IntentService is a base class for Services that handle asynchronous requests (expressed as Intents)
@@ -41,7 +43,7 @@ public class DownloadService extends IntentService {
 
         // do some work
         //ALWAYS CHECK IF THE LINK IS UP-TO-DATE
-        String site = "http://ec2-54-88-109-209.compute-1.amazonaws.com:8000/GET_ALL";
+        String site = "http://ec2-54-236-11-176.compute-1.amazonaws.com:8000/GET_ALL";
 
         String results = getRemoteData(site,params);
 
@@ -50,7 +52,7 @@ public class DownloadService extends IntentService {
 
         // An action name, such as ACTION_VIEW.
         // Application-specific actions should be prefixed with the vendor's package name.
-        broadcast.setAction(DBConnectivity.STATUS_DONE);
+        broadcast.setAction(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
         Log.d("id",results);
         broadcast.putExtra("output_data",results);
         sendBroadcast(broadcast);
