@@ -25,7 +25,6 @@ In AndroidManifest.xml
  */
 public class DownloadService extends IntentService {
 
-
     // required to have a constructor
     public DownloadService() {
         super(DownloadService.class.getName());
@@ -34,14 +33,15 @@ public class DownloadService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String fields[] = {"table","column_name","new_value","where_value","where_key"};
+        //String fields[] = {"table","column_name","new_value","where_value","where_key"};
+        String fields[] = {"table"};
         String params = putParamTogether(fields,intent);
 
         Log.d("how params look like",params);
 
         // do some work
         //ALWAYS CHECK IF THE LINK IS UP-TO-DATE
-        String site = "http://ec2-3-83-41-215.compute-1.amazonaws.com:8000/GET_ALL";
+        String site = "http://ec2-54-88-109-209.compute-1.amazonaws.com:8000/GET_ALL";
 
         String results = getRemoteData(site,params);
 

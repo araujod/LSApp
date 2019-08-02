@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import ca.douglas.lsapp.DownloadService.DBConnectivity;
 import ca.douglas.lsapp.DownloadService.DownloadService;
 import ca.douglas.lsapp.Shared.Commom;
+import dmax.dialog.SpotsDialog;
 
 public class ProcessProducts extends AppCompatActivity {
 
@@ -37,9 +38,9 @@ public class ProcessProducts extends AppCompatActivity {
         i.putExtra("table","Product");
         startService(i);
 
-        //String []s = new String[42];
-        //for (int ind = 0; ind < Commom.Products.length; ind++)
-        //s[ind] = Commom.Products[ind][2];
+        String []x = new String[42];
+        for (int ind = 0; ind < Commom.Products.length; ind++)
+        x[ind] = Commom.Products[ind][2];
 
         String s[] = {"Barnebas","Lynnet","Isabeau","Carolus","Odelinda"};
         for(String names: s)
