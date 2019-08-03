@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import ca.douglas.lsapp.DB.Product;
+import ca.douglas.lsapp.Shared.Commom;
+
 public class ProductDetailFragment extends Fragment {
 
     public ProductDetailFragment() {
@@ -21,11 +24,13 @@ public class ProductDetailFragment extends Fragment {
         Log.d("onCreateView","DetailFragment");
         View v = inflater.inflate(R.layout.activity_product_detail_fragment, null);
         String recvData = getArguments().getString("data");
+        int pos = getArguments().getInt("position");
+        String Categ = Commom.products.get(pos).getCategory() + " " + Commom.storeProducts.get(pos).getAvailable();
 
 
         TextView textV = (TextView) v.findViewById(R.id.txtSomething); // this is referring to the item inside fragment_detail
         String s = "Some data that you want to display";
-        textV.setText("Welcome " + recvData + "\n" + s);
+        textV.setText("Welcome " + recvData + "\n" + Categ);
         return v;
     }
 }

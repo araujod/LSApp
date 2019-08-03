@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import ca.douglas.lsapp.Shared.Commom;
+
 public class ProductMasterFragment extends Fragment {
 
     private ListView lv ;
@@ -20,7 +22,6 @@ public class ProductMasterFragment extends Fragment {
     public ProductMasterFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +39,6 @@ public class ProductMasterFragment extends Fragment {
     }
 
     public void setTheData(ArrayList<String> p) {
-        // called from the MainActivity
         Log.d("setTheData","MasterFragment");
         ArrayAdapter<String> adapterNames;
 
@@ -54,7 +54,7 @@ public class ProductMasterFragment extends Fragment {
                 ProductDetailFragment df = new ProductDetailFragment();
                 Bundle b = new Bundle();
                 b.putString("data",lv.getItemAtPosition(position).toString());
-                // b.putSerializable("data", someArrayList);
+                b.putInt("position",position);
 
                 df.setArguments(b);
                 getFragmentManager().beginTransaction()

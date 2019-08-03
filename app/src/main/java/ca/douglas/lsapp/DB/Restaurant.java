@@ -8,15 +8,19 @@ import ca.douglas.lsapp.Shared.Commom;
 
 public class Restaurant implements Comparable<Restaurant>, Serializable {
     private int id;
-    private String LogoUrl;
+    private String email;
     private String phone;
     private String name;
-    private double latitude;
+    private String address;
+    private String LogoUrl;
     private double longitude;
+    private double latitude;
     private float distanceFromUser;
 
-    public Restaurant(int id, String LogoUrl, String phone, String name, double latitude, double longitude) {
+    public Restaurant(int id, String email , String phone, String name,String address, String LogoUrl, double longitude, double latitude) {
         this.id = id;
+        this.email = email;
+        this.address=address;
         this.LogoUrl = LogoUrl;
         this.name = name;
         this.phone = phone;

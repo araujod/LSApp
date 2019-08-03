@@ -15,14 +15,13 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ca.douglas.lsapp.DownloadService.DBConnectivity;
+import ca.douglas.lsapp.DB.Product;
+import ca.douglas.lsapp.DB.StoreProduct;
 import ca.douglas.lsapp.DownloadService.DownloadService;
 import ca.douglas.lsapp.Shared.Commom;
 import dmax.dialog.SpotsDialog;
 
 public class ProcessProducts extends AppCompatActivity {
-
-
 
     private DBConnectivityProducts receiver = new DBConnectivityProducts(this);
     @Override
@@ -30,16 +29,18 @@ public class ProcessProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process_products);
 
-
         Intent i = new Intent(ProcessProducts.this, DownloadService.class);
-        //i.putExtra("where_value",spin.getSelectedItem().toString());
-        i.putExtra("table","Product");
+        i.putExtra("table","");
+        i.putExtra("where_key","");
+        i.putExtra("where_value","001LiquorStore@gmail.com");
+        i.putExtra("column_name","");
+        i.putExtra("new_value","");
+        i.putExtra("id","");
+        i.putExtra("method","GET_PRODAV");
+        i.putExtra("setAction","ProdAvailable");
         startService(i);
 
-
-
     }
-
 
     public class DBConnectivityProducts extends BroadcastReceiver {
 
@@ -48,8 +49,6 @@ public class ProcessProducts extends AppCompatActivity {
         public static final String STATUS_DONE = "ALL_DONE";
 
         public DBConnectivityProducts(Context context) {
-            //this.result = result;
-            //this.tbl = tbl;
             this.context = context;
         }
 
@@ -59,9 +58,7 @@ public class ProcessProducts extends AppCompatActivity {
 
                 String text = intent.getStringExtra("output_data");
 
-
-                String columns[] = {"ProductID","Name","Description","Category","PictureURL","Price","Highlight"};
-                // String columns[] = {"StoreID","Email","Phone","Name","Address","LogoURL","Lat","Lng"};
+                String columns[] = {"ProductID","Name","Description","Category","PictureURL","Price","Highlight","StoreID","available"};
                 Log.d("DB - onReceive",text);
                 String []p = new String[42];
 
@@ -73,22 +70,24 @@ public class ProcessProducts extends AppCompatActivity {
                     for (int x=0; x < ar.length(); x++) {
                         jobj = ar.getJSONObject(x);
                         // getting the columns
-                        for (int y=0; y < columns.length; y++) {
-                            Commom.Products[x][y] = jobj.getString(columns[y]);
-                        }
-                    }
+                        Product prod = new Product(Integer.parseInt(jobj.getString(columns[0])), jobj.getString(columns[1]),
+                                                      jobj.getString(columns[2]), jobj.getString(columns[3]),
+                                                      jobj.getString(columns[4]), Double.parseDouble(jobj.getString(columns[5])),
+                                                      Boolean.parseBoolean(jobj.getString(columns[6])));
+                        Commom.products.add(prod);
 
-                    for (int ind = 0; ind < Commom.Products.length; ind++) {
-                        p[ind] = Commom.Products[ind][1];
-                        Log.d("DBNEW - COMMOM_PRODUCTS",p[ind]);
+                        StoreProduct storeprod = new StoreProduct(Integer.parseInt(jobj.getString(columns[7])),
+                                Integer.parseInt(jobj.getString(columns[0])),
+                                Boolean.parseBoolean(jobj.getString(columns[8])));
+                        Commom.storeProducts.add(storeprod);
+
                     }
 
                     final ArrayList<String> temp = new ArrayList<>();
 
-                    for(String names: p)
-                        temp.add(names);
-
-
+                    for (int ind = 0; ind < Commom.products.size(); ind++) {
+                        temp.add(Commom.products.get(ind).getName());
+                    }
 
                     ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
                     // passing the data to the MasterFragment
@@ -105,12 +104,6 @@ public class ProcessProducts extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-
 
 
     @Override

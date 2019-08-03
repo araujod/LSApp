@@ -28,7 +28,7 @@ public class StoreProduct {
         ProductID = productID;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return Available;
     }
 

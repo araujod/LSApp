@@ -11,6 +11,7 @@ public class DBUtil {
     |       4 | store_logo | 778-837-4004 | BROADWAY & LILLOOET GLS 300                   | -123,0364495 | 49,260829  |
     |       5 | store_logo | 778-837-4005 | WHOLESALE CUSTOMER CENTRE (WCC VANCOUVER) 100 | -123,0383672 | 49,2618115 |
      */
+    /*
     public static ArrayList<Restaurant> getRestaurantList() {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(new Restaurant( 1 , "store_logo" , "778-837-4001","COLLINGWOOD-KINGSWAY GLS 113",49.2320012, -123.0314733  ));
@@ -20,6 +21,7 @@ public class DBUtil {
         restaurants.add(new Restaurant( 5 , "store_logo", "778-837-4005", "WHOLESALE CUSTOMER CENTRE (WCC VANCOUVER) 100" , 49.2618115 , -123.0383672));
         return restaurants;
     }
+    */
 
     /**
      * +---------+-----------+-----------+

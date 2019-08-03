@@ -10,7 +10,7 @@ CREATE TABLE Product (
     Category    VARCHAR(50) NOT NULL,
     PictureURL  VARCHAR(200) NOT NULL,
     Price       FLOAT(6,2) NOT NULL,
-    Highlight   VARCHAR(10) NOT NULL,
+    Highlight   BOOLEAN NOT NULL,
     CONSTRAINT  Product_PK PRIMARY KEY(ProductID)
 );
 */

@@ -13,6 +13,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import ca.douglas.lsapp.ProcessProducts;
+import ca.douglas.lsapp.Restaurants;
+
+import static ca.douglas.lsapp.Shared.Commom.AWS_URL;
 
 
 /*
@@ -36,14 +39,17 @@ public class DownloadService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //String fields[] = {"table","column_name","new_value","where_value","where_key"};
-        String fields[] = {"table"};
+        String fields[] = {"table","where_key","where_value","column_name","new_value","id","method","setAction"};
         String params = putParamTogether(fields,intent);
+
+        String setDBCon = intent.getStringExtra("setAction");
+        String Method = intent.getStringExtra("method");
 
         Log.d("how params look like",params);
 
         // do some work
         //ALWAYS CHECK IF THE LINK IS UP-TO-DATE
-        String site = "http://ec2-54-236-11-176.compute-1.amazonaws.com:8000/GET_ALL";
+        String site = "http://"+AWS_URL+":8000/"+Method;
 
         String results = getRemoteData(site,params);
 
@@ -52,7 +58,15 @@ public class DownloadService extends IntentService {
 
         // An action name, such as ACTION_VIEW.
         // Application-specific actions should be prefixed with the vendor's package name.
-        broadcast.setAction(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
+        switch (setDBCon){
+            case "Restaurants":
+                broadcast.setAction(Restaurants.DBConnectivityRestaurants.STATUS_DONE);
+                break;
+            case "ProdAvailable":
+                broadcast.setAction(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
+                break;
+        }
+
         Log.d("id",results);
         broadcast.putExtra("output_data",results);
         sendBroadcast(broadcast);
