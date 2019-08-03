@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import ca.douglas.lsapp.DB.OrderStatus;
 import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.StoreProduct;
 import ca.douglas.lsapp.DB.User;
@@ -18,7 +19,8 @@ public class Commom {
     public static User currentUser = new User();//Get from firebase when login is succesfull
     public static ArrayList<Product> products = new ArrayList<>();
     public static ArrayList<StoreProduct> storeProducts = new ArrayList<>();
-    public static final String AWS_URL = "ec2-3-85-9-40.compute-1.amazonaws.com";
+    public static ArrayList<OrderStatus> orderStatus = new ArrayList<>();
+    public static final String AWS_URL = "ec2-35-170-191-177.compute-1.amazonaws.com";
     private static final DecimalFormat CURRENCY_FORMATTER = new DecimalFormat("$ #,###.##");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
     /**

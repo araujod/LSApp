@@ -12,8 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.StoreProduct;
@@ -21,18 +19,18 @@ import ca.douglas.lsapp.DownloadService.DownloadService;
 import ca.douglas.lsapp.Shared.Commom;
 import dmax.dialog.SpotsDialog;
 
-public class ProcessProducts extends AppCompatActivity {
+public class ProcessStoreOrders extends AppCompatActivity {
 
-    private DBConnectivityProducts receiver = new DBConnectivityProducts(this);
+    private ProcessStoreOrders.DBConnectivityProducts receiver = new ProcessStoreOrders.DBConnectivityProducts(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process_products);
 
-        Intent i = new Intent(ProcessProducts.this, DownloadService.class);
+        Intent i = new Intent(ProcessStoreOrders.this, DownloadService.class);
         i.putExtra("table","");
         i.putExtra("where_key","");
-        i.putExtra("where_value",Commom.currentUser.getEmail());
+        i.putExtra("where_value", Commom.currentUser.getEmail());
         i.putExtra("where_value2","");
         i.putExtra("column_name","");
         i.putExtra("new_value","");
@@ -79,9 +77,9 @@ public class ProcessProducts extends AppCompatActivity {
                         else
                             tempBool = Boolean.FALSE;
                         Product prod = new Product(Integer.parseInt(jobj.getString(columns[0])), jobj.getString(columns[1]),
-                                                      jobj.getString(columns[2]), jobj.getString(columns[3]),
-                                                      jobj.getString(columns[4]), Float.parseFloat(jobj.getString(columns[5])),
-                                                      tempBool);
+                                jobj.getString(columns[2]), jobj.getString(columns[3]),
+                                jobj.getString(columns[4]), Float.parseFloat(jobj.getString(columns[5])),
+                                tempBool);
                         Commom.products.add(prod);
 
                         if (jobj.getInt(columns[8]) == 1)
@@ -104,7 +102,7 @@ public class ProcessProducts extends AppCompatActivity {
                     ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
                     // passing the data to the MasterFragment
 
-                    Log.d("onCreate","ProcessProducts");
+                    Log.d("onCreate","ProcessStoreOrders");
 
                     m.setTheData(temp);
 
@@ -122,7 +120,7 @@ public class ProcessProducts extends AppCompatActivity {
         // Unregister since the activity is paused.
         super.onPause();
         unregisterReceiver(receiver);
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+        final SpotsDialog waitingDialog = new SpotsDialog(ProcessStoreOrders.this);
         waitingDialog.show();
         waitingDialog.setMessage("Please wait...");
     }
@@ -131,7 +129,7 @@ public class ProcessProducts extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // An IntentFilter can match against actions, categories, and data
-        IntentFilter filter = new IntentFilter(DBConnectivityProducts.STATUS_DONE);
+        IntentFilter filter = new IntentFilter(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
 
         //Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
         //Register a BroadcastReceiver to be run in the main activity thread.
@@ -141,7 +139,7 @@ public class ProcessProducts extends AppCompatActivity {
         registerReceiver(receiver,filter);
 
         Log.d("DB - onReceive","IM HERE NEW!!");
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+        final SpotsDialog waitingDialog = new SpotsDialog(ProcessStoreOrders.this);
         waitingDialog.dismiss();
 
 
