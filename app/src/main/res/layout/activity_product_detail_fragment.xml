@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +8,72 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/txtSomething"/>
+        android:id="@+id/txtCategory"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="18dp"
+        android:text="Beer - Category"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="98dp"
+        android:text="Bud"
+        />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="168dp"
+        android:src="@drawable/liquor_bg" />
+
+
+    <TextView
+    android:id="@+id/txtPrice"
+    android:layout_width="120dp"
+    android:layout_height="38dp"
+    android:layout_marginStart="64dp"
+    android:layout_marginLeft="64dp"
+    android:layout_marginBottom="180dp"
+    android:text="price"
+    android:layout_gravity="bottom"
+    />
+
+    <TextView
+        android:id="@+id/txtAvailable"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginBottom="140dp"
+        android:text="price"
+        android:layout_gravity="bottom"
+        />
+
+
+    <Button
+        android:id="@+id/btn_changeAvail"
+        android:text="Change Availability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cust_btn_gradient"
+        android:width="250dp"
+        android:height="60dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="64dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+
 
 </FrameLayout>

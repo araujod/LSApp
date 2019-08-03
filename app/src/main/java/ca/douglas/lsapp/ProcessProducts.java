@@ -41,6 +41,7 @@ public class ProcessProducts extends AppCompatActivity {
         i.putExtra("setAction","ProdAvailable");
         startService(i);
 
+
     }
 
     public class DBConnectivityProducts extends BroadcastReceiver {
@@ -66,6 +67,8 @@ public class ProcessProducts extends AppCompatActivity {
                     Log.d("dataNEW",text);
                     JSONArray ar = new JSONArray(text);
                     JSONObject jobj;
+                    Commom.products.clear();
+                    Commom.storeProducts.clear();
 
                     Boolean tempBool;
                     Commom.products.clear();
@@ -73,6 +76,18 @@ public class ProcessProducts extends AppCompatActivity {
 
                     for (int x=0; x < ar.length(); x++) {
                         jobj = ar.getJSONObject(x);
+
+                        Boolean available = false;
+                        if(jobj.getInt(columns[8])==1){
+                            available = true;
+                        }
+
+                        Boolean highlight = false;
+                        if(jobj.getInt(columns[6])==1){
+                            highlight = true;
+                        }
+
+
                         // getting the columns
                         if (jobj.getInt(columns[6]) == 1)
                             tempBool = Boolean.TRUE;
@@ -92,6 +107,8 @@ public class ProcessProducts extends AppCompatActivity {
                                 Integer.parseInt(jobj.getString(columns[0])),
                                 tempBool);
                         Commom.storeProducts.add(storeprod);
+
+                        Log.d("BOOLEAN",text);
 
                     }
 

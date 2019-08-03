@@ -21,7 +21,7 @@ import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.Restaurant;
 import ca.douglas.lsapp.DB.StoreProduct;
 import ca.douglas.lsapp.Shared.Commom;
-
+@SuppressWarnings("unchecked")
 public class ShowProducts extends AppCompatActivity {
 
     private static final String TAG = "PRODUCTS";
