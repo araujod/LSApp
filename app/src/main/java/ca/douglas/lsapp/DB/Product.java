@@ -1,6 +1,8 @@
 package ca.douglas.lsapp.DB;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     /*
     +-------------+------------------+------+-----+---------+----------------+
     | Field       | Type             | Null | Key | Default | Extra          |
@@ -19,10 +21,10 @@ public class Product {
     private String Description;
     private String Category;
     private String PictureURL;
-    private Double Price;
+    private Float Price;
     private Boolean Highlight;
 
-    public Product(int productID, String name, String description, String category, String pictureURL, Double price, Boolean highlight) {
+    public Product(int productID, String name, String description, String category, String pictureURL, Float price, Boolean highlight) {
         this.ProductID = productID;
         this.Name = name;
         this.Description = description;
@@ -72,11 +74,11 @@ public class Product {
         PictureURL = pictureURL;
     }
 
-    public Double getPrice() {
+    public Float getPrice() {
         return Price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         Price = price;
     }
 
@@ -87,4 +89,5 @@ public class Product {
     public void setHighlight(Boolean highlight) {
         Highlight = highlight;
     }
+
 }

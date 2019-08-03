@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ca.douglas.lsapp.DB.DBUtil;
+import ca.douglas.lsapp.DB.Order;
 import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.Restaurant;
 import ca.douglas.lsapp.DownloadService.DownloadService;
@@ -35,7 +36,7 @@ public class Restaurants extends AppCompatActivity {
     private Location userLocation;
     private double latitude = 0, longitude = 0;
     private Restaurants.DBConnectivityRestaurants receiver = new Restaurants.DBConnectivityRestaurants(this);
-
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,18 @@ public class Restaurants extends AppCompatActivity {
                 String columns[] = {"StoreID","Email","Phone","Name","Address","LogoURL","Lng","Lat"};
 
                 Log.d("DB - onReceive",text);
+
+                // Set the image in the toolbar
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+                getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+                getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+                double latitude = 0, longitude = 0;
+                if (intent != null) {
+                    latitude = intent.getDoubleExtra("latitude", 0);
+                    longitude = intent.getDoubleExtra("longitude", 0);
+                    order = (Order) intent.getSerializableExtra("order");
+                }
 
 
                 userLocation = new Location("user");
@@ -145,10 +158,11 @@ public class Restaurants extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Restaurant restaurant = (Restaurant) parent.getAdapter().getItem(position);
+                            order.setStoreID(restaurant.getId());
 
                             Intent i = new Intent(Restaurants.this, ShowProducts.class);
                             i.putExtra("restaurant", restaurant);
-
+                            i.putExtra("order", order);
                             startActivity(i);
                         }
                     });

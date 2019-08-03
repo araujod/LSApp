@@ -19,6 +19,8 @@ class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     private int mResource;
     DecimalFormat decimalFormat;
 
+
+
     public RestaurantAdapter(Context context) {
         super(context, R.layout.adapter_restaurant_layout);
         mContext = context;

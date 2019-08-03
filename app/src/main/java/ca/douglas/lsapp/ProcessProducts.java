@@ -73,7 +73,7 @@ public class ProcessProducts extends AppCompatActivity {
                         // getting the columns
                         Product prod = new Product(Integer.parseInt(jobj.getString(columns[0])), jobj.getString(columns[1]),
                                                       jobj.getString(columns[2]), jobj.getString(columns[3]),
-                                                      jobj.getString(columns[4]), Double.parseDouble(jobj.getString(columns[5])),
+                                                      jobj.getString(columns[4]), Float.parseFloat(jobj.getString(columns[5])),
                                                       Boolean.parseBoolean(jobj.getString(columns[6])));
                         Commom.products.add(prod);
 

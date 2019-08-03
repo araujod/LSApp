@@ -3,6 +3,7 @@ package ca.douglas.lsapp.DB;
 public class User {
     public final static String CLIENT_TYPE = "C";
     public final static String STORE_TYPE = "S"; //This type should be changed manually
+    private String id;
     private String name;
     private String email;
     private String address;
@@ -40,12 +41,20 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
-
+    
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

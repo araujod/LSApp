@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.douglas.lsapp">
-
     <!-- Internet permission, as we are accessing data from server -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,8 +12,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ShowProducts"></activity>
+        <activity android:name=".OrderDetailView"></activity>
+        <activity android:name=".ProductDetail" />
+        <activity android:name=".ShowProducts" />
         <activity android:name=".Restaurants" />
         <activity android:name=".ClientHome" />
         <activity android:name=".ProcessProducts" />

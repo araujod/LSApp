@@ -14,6 +14,7 @@ import android.location.Address;
 import java.util.List;
 import java.util.Locale;
 
+import ca.douglas.lsapp.DB.Order;
 import ca.douglas.lsapp.Shared.Commom;
 
 public class ClientHome extends AppCompatActivity {
@@ -29,6 +30,8 @@ public class ClientHome extends AppCompatActivity {
 
         etAddress.setText(Commom.currentUser.getAddress());
 
+
+
         Button btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +39,12 @@ public class ClientHome extends AppCompatActivity {
                 Address address = validAddress(tiAddress, etAddress);
 
                 if (address != null) {
+                    Order order = new Order(etAddress.getText().toString(), Commom.currentUser.getId());
+
                     Intent i = new Intent(ClientHome.this, Restaurants.class);
                     i.putExtra("latitude", address.getLatitude());
                     i.putExtra("longitude", address.getLongitude());
+                    i.putExtra("order", order);
                     startActivity(i);
                 }
             }

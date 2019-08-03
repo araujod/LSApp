@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Register", "Success");
                                 Toast.makeText(MainActivity.this, "User successfully registered!", Toast.LENGTH_SHORT).show();
                                 Log.d("Register", "User successfully registered!");
+                                Commom.currentUser.setId(userID);
                                 Commom.currentUser.setAddress(edtAddress.getText().toString());
                                 Commom.currentUser.setName(edtName.getText().toString());
                                 Commom.currentUser.setBirthday(edtBirthdate.getText().toString());
@@ -222,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "User found data: " + document.getData());
+                        Commom.currentUser.setId(userID);
                         Commom.currentUser.setAddress(document.getString("Address"));
                         Commom.currentUser.setName(document.getString("Name"));
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
