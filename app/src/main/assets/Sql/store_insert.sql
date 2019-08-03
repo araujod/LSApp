@@ -10,10 +10,11 @@ CREATE TABLE Store (
     Name        VARCHAR(100) NOT NULL,
     Address     VARCHAR(100) NOT NULL,
     LogoURL     VARCHAR(200) NOT NULL,
-    Lat         VARCHAR(30) NOT NULL,
     Lng         VARCHAR(30) NOT NULL,
+	Lat         VARCHAR(30) NOT NULL,
     CONSTRAINT 	Store_PK PRIMARY KEY(StoreID)
 );
+
 */
 
 INSERT INTO Store (Email,Phone, Name,Address, LogoURL, Lng, lat) VALUES

@@ -1,7 +1,6 @@
 
 /**
 
-Final Project - CSIS4175 - Insert Availability into Store_Product Table
 CREATE TABLE StoreProduct (
 	StoreID     INT UNSIGNED NOT NULL,
     ProductID   INT UNSIGNED NOT NULL,

@@ -18,7 +18,7 @@ public class Commom {
     public static User currentUser = new User();//Get from firebase when login is succesfull
     public static ArrayList<Product> products = new ArrayList<>();
     public static ArrayList<StoreProduct> storeProducts = new ArrayList<>();
-    public static final String AWS_URL = "ec2-54-173-179-45.compute-1.amazonaws.com";
+    public static final String AWS_URL = "ec2-3-85-9-40.compute-1.amazonaws.com";
     private static final DecimalFormat CURRENCY_FORMATTER = new DecimalFormat("$ #,###.##");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
     /**

@@ -13,6 +13,7 @@ CREATE TABLE Product (
     Highlight   BOOLEAN NOT NULL,
     CONSTRAINT  Product_PK PRIMARY KEY(ProductID)
 );
+
 */
 
 INSERT INTO Product (Name,Description,Category,PictureURL,Price,Highlight) VALUES
