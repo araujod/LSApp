@@ -32,7 +32,8 @@ public class ProcessProducts extends AppCompatActivity {
         Intent i = new Intent(ProcessProducts.this, DownloadService.class);
         i.putExtra("table","");
         i.putExtra("where_key","");
-        i.putExtra("where_value","001LiquorStore@gmail.com");
+        i.putExtra("where_value",Commom.currentUser.getEmail());
+        i.putExtra("where_value2","");
         i.putExtra("column_name","");
         i.putExtra("new_value","");
         i.putExtra("id","");

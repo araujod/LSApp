@@ -4,6 +4,7 @@ public class User {
     public final static String CLIENT_TYPE = "C";
     public final static String STORE_TYPE = "S"; //This type should be changed manually
     private String name;
+    private String email;
     private String address;
     private String birthday;
     private String type;//"C" for client and "S" for store manager
@@ -38,5 +39,13 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

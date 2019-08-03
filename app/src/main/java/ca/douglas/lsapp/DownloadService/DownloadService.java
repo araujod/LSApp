@@ -39,7 +39,7 @@ public class DownloadService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //String fields[] = {"table","column_name","new_value","where_value","where_key"};
-        String fields[] = {"table","where_key","where_value","column_name","new_value","id","method","setAction"};
+        String fields[] = {"table","where_key","where_value","where_value2","column_name","new_value","id","method","setAction"};
         String params = putParamTogether(fields,intent);
 
         String setDBCon = intent.getStringExtra("setAction");

@@ -46,13 +46,34 @@ app.post('/GET_ONE', function (req, res) {
     });
  });
  
+ app.post('/PUT_PRODAV', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+    
+    
+    let qString = "UPDATE StoreProduct SET Available = "+ req.body.new_value +" WHERE ProductID=" + req.body.where_value + " AND  StoreID=" + req.body.where_value2 + "   ";
+   
+    //let qString = "update StoreProduct set Available=false where ProductID = 1 and StoreID=1;"
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+        
+        res.send(JSON.stringify(rows));
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+ });
+ 
+ 
+ 
   app.post('/GET_PRODAV', function (req, res) {
     console.log("Got a GET request for the homepage");
     console.log(req);
     
-    //let qString = "SELECT * from " + req.body.table + " ";
+    
     let qString = "select t3.*, t1.StoreID, t1.available from StoreProduct t1 inner join Store t2 on t1.StoreID = t2.StoreID inner join Product t3 on t1.ProductID = t3.ProductID where t2.Email='" + req.body.where_value + "'";
-    console.log(qString);
+    
     connection.query(qString, function(err, rows, fields) {
     if (!err) {
         console.log("Displaying all the rows");

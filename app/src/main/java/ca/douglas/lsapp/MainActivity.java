@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         registerDialog.show();
     }
 
-    private void checkRegisteredUser(final String userID, final String userName){
+    private void checkRegisteredUser(final String userID, final String userName, final String email){
         final String TAG = "CheckUser";
         final SpotsDialog waitingDialog = new SpotsDialog(MainActivity.this);
         waitingDialog.show();
@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setName(document.getString("Name"));
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
+                        Commom.currentUser.setEmail(email);
                         tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
                         if (Commom.currentUser.getType().equals(User.CLIENT_TYPE)) //Customer
                             //startActivity(new Intent(MainActivity.this, HomeActivity.class));
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 //If the user is not in our database call the register Dialog
-                checkRegisteredUser(user.getUid(),user.getDisplayName());
+                checkRegisteredUser(user.getUid(),user.getDisplayName(), user.getEmail());
 
                 //Enable Button Sign out.
                 btnSignOut.setEnabled(true);

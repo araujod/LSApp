@@ -54,6 +54,7 @@ public class Restaurants extends AppCompatActivity {
         push.putExtra("table","Store");
         push.putExtra("where_key","");
         push.putExtra("where_value","");
+        push.putExtra("where_value2","");
         push.putExtra("column_name","");
         push.putExtra("new_value","");
         push.putExtra("id","");
