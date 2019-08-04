@@ -47,6 +47,7 @@ public class Restaurants extends AppCompatActivity {
         if (i != null) {
             latitude = i.getDoubleExtra("latitude", 0);
             longitude = i.getDoubleExtra("longitude", 0);
+            order = (Order) i.getSerializableExtra("order");
         }
         Log.d(TAG, "Lat/Long : " + latitude + " " + longitude);
 
@@ -100,7 +101,6 @@ public class Restaurants extends AppCompatActivity {
                 if (intent != null) {
                     latitude = intent.getDoubleExtra("latitude", 0);
                     longitude = intent.getDoubleExtra("longitude", 0);
-                    order = (Order) intent.getSerializableExtra("order");
                 }
 
 

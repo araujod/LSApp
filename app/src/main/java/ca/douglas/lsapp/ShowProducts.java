@@ -53,11 +53,13 @@ public class ShowProducts extends AppCompatActivity {
         //Set title of action bar
         setTitle(restaurant.getName());
 
-        ArrayList<StoreProduct> productsAvailable = DBUtil.getStoreProductList();
+        ArrayList<Product> productsAvailable = DBUtil.getProductList();
+        Commom.productListFromSelectedStore =productsAvailable;
 
         ListView listView = findViewById(R.id.listViewProducts);
         productAdapter = new ProductAdapter(this);
         listView.setAdapter(productAdapter);
+        productAdapter.setProducts(productsAvailable);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

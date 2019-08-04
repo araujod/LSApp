@@ -12,6 +12,7 @@ public class Order implements Serializable {
     Total       FLOAT(8,2) NOT NULL,
     Total_Items SMALLINT NOT NULL,
      */
+    private int OrderID;
     private int StoreID;
     private String UserID;
     private Date DateTime;
@@ -75,4 +76,11 @@ public class Order implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
+    public int getOrderID() {
+        return OrderID;
+    }
+
+    public void setOrderID(int orderID) {
+        OrderID = orderID;
+    }
 }

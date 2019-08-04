@@ -5,5 +5,154 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductDetail">
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/clCheckout"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Image of the product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_margin"
+                android:layout_marginLeft="@dimen/app_margin"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/app_margin"
+                android:layout_marginRight="@dimen/app_margin"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgImage" />
+
+            <TextView
+                android:id="@+id/txtQuantity"
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:height="58dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/btnMore"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/btnLess"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuantityTitle" />
+
+            <Button
+                android:id="@+id/btnLess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_margin"
+                android:layout_marginLeft="@dimen/app_margin"
+                android:layout_marginTop="8dp"
+                android:text="-"
+                android:textSize="18sp"
+                android:background="@drawable/cust_btn_gradient"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuantityTitle" />
+
+            <Button
+                android:id="@+id/btnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/app_margin"
+                android:layout_marginRight="@dimen/app_margin"
+                android:text="+"
+                android:textSize="18sp"
+                android:background="@drawable/cust_btn_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuantityTitle" />
+
+            <TextView
+                android:id="@+id/txtQuantityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_margin"
+                android:layout_marginLeft="@dimen/app_margin"
+                android:layout_marginTop="24sp"
+                android:text="Quantity"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tiSpecialInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_margin"
+                android:layout_marginLeft="@dimen/app_margin"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/app_margin"
+                android:layout_marginRight="@dimen/app_margin"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuantity">
+
+
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_banner_height"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/cust_btn_gradient"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/txtAddToOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add To Order"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

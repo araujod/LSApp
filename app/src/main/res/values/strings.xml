@@ -21,4 +21,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_show_products">ShowProducts</string>
+
+    <string name="yourOrder">Your Order</string>
+    <string name="yourPreviousOrder">Your Previous Order</string>
+    <string name="cancel">Cancel</string>
+    <string name="productDescriptionFormat">• %1$s</string>
+    <string name="specialInstructionsFormat">\"%1$s\"</string>
+    <string name="clearImage">Clear Image</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="discountDialog">Discount: %1$s\n</string>
+    <string name="priceDialog">Subtotal:  %1$s</string>
+    <string name="totalPriceDialog">Total:     %1$s</string>
+    <string name="orderComplete">Order Complete</string>
 </resources>
