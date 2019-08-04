@@ -21,127 +21,28 @@ import dmax.dialog.SpotsDialog;
 
 public class ProcessStoreOrders extends AppCompatActivity {
 
-    private ProcessStoreOrders.DBConnectivityProducts receiver = new ProcessStoreOrders.DBConnectivityProducts(this);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_process_products);
+        setContentView(R.layout.activity_process_store_orders);
 
-        Intent i = new Intent(ProcessStoreOrders.this, DownloadService.class);
-        i.putExtra("table","");
-        i.putExtra("where_key","");
-        i.putExtra("where_value", Commom.currentUser.getEmail());
-        i.putExtra("where_value2","");
-        i.putExtra("column_name","");
-        i.putExtra("new_value","");
-        i.putExtra("id","");
-        i.putExtra("method","GET_PRODAV");
-        i.putExtra("setAction","ProdAvailable");
-        startService(i);
+        final ArrayList<Integer> temp = new ArrayList<>();
 
-    }
-
-    public class DBConnectivityProducts extends BroadcastReceiver {
-
-        private Context context;
-        Context c;
-        public static final String STATUS_DONE = "ALL_DONE";
-
-        public DBConnectivityProducts(Context context) {
-            this.context = context;
+        for (int ind = 0; ind < Commom.orderStatus.size(); ind++) {
+            temp.add(Commom.orderStatus.get(ind).getOrderID());
+            Log.d("ORDER ID", String.valueOf(Commom.orderStatus.get(ind).getOrderID()));
         }
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(STATUS_DONE)) {
+        StoreOrdersMasterFragment m = (StoreOrdersMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
+        // passing the data to the MasterFragment
 
-                String text = intent.getStringExtra("output_data");
+        Log.d("onCreate", "ProcessStoreOrders");
 
-                String columns[] = {"ProductID","Name","Description","Category","PictureURL","Price","Highlight","StoreID","available"};
-                Log.d("DB - onReceive",text);
-
-                try {
-                    Log.d("dataNEW",text);
-                    JSONArray ar = new JSONArray(text);
-                    JSONObject jobj;
-
-                    Boolean tempBool;
-                    Commom.products.clear();
-                    Commom.storeProducts.clear();
-
-                    for (int x=0; x < ar.length(); x++) {
-                        jobj = ar.getJSONObject(x);
-                        // getting the columns
-                        if (jobj.getInt(columns[6]) == 1)
-                            tempBool = Boolean.TRUE;
-                        else
-                            tempBool = Boolean.FALSE;
-                        Product prod = new Product(Integer.parseInt(jobj.getString(columns[0])), jobj.getString(columns[1]),
-                                jobj.getString(columns[2]), jobj.getString(columns[3]),
-                                jobj.getString(columns[4]), Float.parseFloat(jobj.getString(columns[5])),
-                                tempBool);
-                        Commom.products.add(prod);
-
-                        if (jobj.getInt(columns[8]) == 1)
-                            tempBool = Boolean.TRUE;
-                        else
-                            tempBool = Boolean.FALSE;
-                        StoreProduct storeprod = new StoreProduct(Integer.parseInt(jobj.getString(columns[7])),
-                                Integer.parseInt(jobj.getString(columns[0])),
-                                tempBool);
-                        Commom.storeProducts.add(storeprod);
-
-                    }
-
-                    final ArrayList<String> temp = new ArrayList<>();
-
-                    for (int ind = 0; ind < Commom.products.size(); ind++) {
-                        temp.add(Commom.products.get(ind).getName());
-                    }
-
-                    ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
-                    // passing the data to the MasterFragment
-
-                    Log.d("onCreate","ProcessStoreOrders");
-
-                    m.setTheData(temp);
-
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        // Unregister since the activity is paused.
-        super.onPause();
-        unregisterReceiver(receiver);
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessStoreOrders.this);
-        waitingDialog.show();
-        waitingDialog.setMessage("Please wait...");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // An IntentFilter can match against actions, categories, and data
-        IntentFilter filter = new IntentFilter(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
-
-        //Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
-        //Register a BroadcastReceiver to be run in the main activity thread.
-        //The receiver will be called with any broadcast Intent that matches filter,
-        //in the main application thread.
-
-        registerReceiver(receiver,filter);
-
-        Log.d("DB - onReceive","IM HERE NEW!!");
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessStoreOrders.this);
-        waitingDialog.dismiss();
+        m.setTheData(temp);
 
 
     }
+
 }

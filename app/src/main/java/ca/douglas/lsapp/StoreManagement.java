@@ -107,6 +107,7 @@ public class StoreManagement extends AppCompatActivity {
                                                 OrderStatus orderSts = new OrderStatus(Integer.parseInt(jobj.getString(columns[0])),
                                                         Integer.parseInt(jobj.getString(columns[1])),
                                                         jobj.getString(columns[2]), jobj.getString(columns[3]));
+
                                                 Commom.orderStatus.add(orderSts);
 
                                             }
@@ -116,7 +117,7 @@ public class StoreManagement extends AppCompatActivity {
                                         }
 
                                         Intent i;
-                                        i = new Intent(StoreManagement.this, ProcessProducts.class);
+                                        i = new Intent(StoreManagement.this, ProcessStoreOrders.class);
                                         startActivity(i);
 
                                     }

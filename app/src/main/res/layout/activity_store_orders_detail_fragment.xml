@@ -1,14 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StoreOrdersDetailFragment">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/DetailFragment"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".StoreOrdersDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<!-- TODO: Update blank fragment layout -->
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/txtSomething"/>
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtOrderNumber"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="18dp"
+                android:fontWeight="700"
+                android:text="ORDER #"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/OrderDate"
+                android:layout_width="120dp"
+                android:layout_height="38dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="30dp"
+                android:text="Date: 09/02/19 20:05pm"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtCustomerInfo"
+                android:layout_width="142dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="5dp"
+                android:text="Customer Information:"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtCustomerName"
+                android:layout_width="146dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="5dp"
+                android:text="Name: "
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtCustomerPhone"
+                android:layout_width="149dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="5dp"
+                android:text="Phone: "
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtCustomerEmail"
+                android:layout_width="150dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="5dp"
+                android:text="Email: "
+                android:textSize="15dp" />
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*"
+
+                >
+
+
+                <TableRow
+
+                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ProductID"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product" />
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categ" />
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Qty." />
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sub-Total" />
+
+                </TableRow>
+
+
+
+
+            </TableLayout>
+
+            <Button
+                android:id="@+id/btn_changeAvail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="64dp"
+                android:layout_marginBottom="10dp"
+                android:width="150dp"
+                android:height="60dp"
+                android:background="@drawable/cust_btn_gradient"
+                android:text="Accept Order"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
