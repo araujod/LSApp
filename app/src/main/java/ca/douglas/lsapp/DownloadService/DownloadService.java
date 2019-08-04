@@ -15,6 +15,7 @@ import java.net.URLEncoder;
 import ca.douglas.lsapp.ProcessProducts;
 import ca.douglas.lsapp.ProductDetailFragment;
 import ca.douglas.lsapp.Restaurants;
+import ca.douglas.lsapp.ShowProducts;
 import ca.douglas.lsapp.StoreOrdersDetailFragment;
 
 import static ca.douglas.lsapp.Shared.Commom.AWS_URL;
@@ -74,6 +75,9 @@ public class DownloadService extends IntentService {
 
             case "StoreOrders":
                 broadcast.setAction(StoreOrdersDetailFragment.DBConnectivityStoreOrders.STATUS_DONE);
+                break;
+            case "ShowProdAvailable":
+                broadcast.setAction(ShowProducts.DBConnectivityShowProducts.STATUS_DONE);
                 break;
         }
 

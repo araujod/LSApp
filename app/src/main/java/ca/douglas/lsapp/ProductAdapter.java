@@ -62,7 +62,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             }
         }*/
         txtName.setText(product.getName());
-        txtDescription.setText(product.getDescription());
+        txtDescription.setText(product.getCategory());
         txtPrice.setText(Commom.getCurrencyFormatted(product.getPrice()));
 
         return convertView;

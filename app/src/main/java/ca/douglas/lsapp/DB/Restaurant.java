@@ -76,6 +76,14 @@ public class Restaurant implements Comparable<Restaurant>, Serializable {
         this.phone = phone;
     }
 
+ public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public float getDistanceFromUser() {
         return distanceFromUser;
     }

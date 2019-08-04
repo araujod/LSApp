@@ -97,12 +97,6 @@ public class Restaurants extends AppCompatActivity {
                 getSupportActionBar().setLogo(R.mipmap.ic_launcher);
                 getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-                double latitude = 0, longitude = 0;
-                if (intent != null) {
-                    latitude = intent.getDoubleExtra("latitude", 0);
-                    longitude = intent.getDoubleExtra("longitude", 0);
-                }
-
 
                 userLocation = new Location("user");
                 userLocation.setLatitude(latitude);
@@ -132,8 +126,8 @@ public class Restaurants extends AppCompatActivity {
                                 jobj.getString(columns[3]),
                                 jobj.getString(columns[4]),
                                 jobj.getString(columns[5]),
-                                Double.parseDouble(jobj.getString(columns[6])),
-                                Double.parseDouble(jobj.getString(columns[7]))
+                                Double.parseDouble(jobj.getString(columns[6])),  //Longitude
+                                Double.parseDouble(jobj.getString(columns[7]))  //Latitude
                         );
 
                         restaurants.add(rest);
