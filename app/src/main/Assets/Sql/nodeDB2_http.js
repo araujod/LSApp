@@ -65,7 +65,24 @@ app.post('/GET_ONE', function (req, res) {
     });
  });
  
- 
+ app.post('/GET_ORDDET', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+
+
+    let qString = "select t1.*, t2.*, t3.* from Orders t1 inner join Order_Detail t2 on t1.OrderID = t2.OrderID inner join Product t3 on t2.ProductID = t3.ProductID where t1.OrderID=" + req.body.where_value;
+
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+
+        res.send(JSON.stringify(rows));
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+ });
+
  
   app.post('/GET_PRODAV', function (req, res) {
     console.log("Got a GET request for the homepage");
