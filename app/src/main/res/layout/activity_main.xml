@@ -5,40 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@drawable/cust_btn_gradient"
 
     >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/cust_btn_gradient"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="50dp"
-            android:layout_centerInParent="true"
-            android:text="Login First"
-            android:textColor="@android:color/white"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="116dp" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btn_sign_out"
-        android:text="Sign Out"
-        android:enabled="false"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cust_btn_gradient"
-        android:width="250dp"
-        android:height="60dp"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        />
 
 </RelativeLayout>

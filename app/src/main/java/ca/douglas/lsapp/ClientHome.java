@@ -2,6 +2,7 @@ package ca.douglas.lsapp;
 
 import android.content.Intent;
 import android.location.Geocoder;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.location.Address;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +37,30 @@ public class ClientHome extends AppCompatActivity {
 
         etAddress.setText(Commom.currentUser.getAddress());
 
+        final Button btnSignOut = findViewById(R.id.btnLogout);
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Logout
+                AuthUI.getInstance()
+                        .signOut(ClientHome.this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                btnSignOut.setEnabled(false);
+                               Intent i  = new Intent(ClientHome.this, MainActivity.class);
+                               startActivity(i);
+                               finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ClientHome.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
 
 
         Button btnSearch = findViewById(R.id.btnSearch);

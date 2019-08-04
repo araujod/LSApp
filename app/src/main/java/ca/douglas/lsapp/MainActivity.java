@@ -46,8 +46,6 @@ import static ca.douglas.lsapp.Shared.Commom.currentUser;
 public class MainActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1111; //Define any number
     List<AuthUI.IdpConfig> providers;
-    Button btnSignOut;
-    TextView tvUserName;
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore db;
     String userCollection = "users";
@@ -59,30 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        btnSignOut = findViewById(R.id.btn_sign_out);
-        tvUserName = findViewById(R.id.tvUserName);
-
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Logout
-                AuthUI.getInstance()
-                        .signOut(MainActivity.this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                btnSignOut.setEnabled(false);
-                                tvUserName.setText("Please login first!");
-                                showSignInOptions();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
         //Init providers
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -185,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                                 Commom.currentUser.setName(edtName.getText().toString());
                                 Commom.currentUser.setBirthday(edtBirthdate.getText().toString());
                                 Commom.currentUser.setType(User.CLIENT_TYPE);//Always Client when created trough app
-                                tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
                                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
                                 finish();
 
@@ -229,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
                         Commom.currentUser.setBirthday(document.getString("Birthdate"));
                         Commom.currentUser.setType(document.getString("Type"));
                         Commom.currentUser.setEmail(email);
-                        tvUserName.setText("Welcome\n"+Commom.currentUser.getName()+"\nAddress:"+Commom.currentUser.getAddress());
                         if (Commom.currentUser.getType().equals(User.CLIENT_TYPE)) //Customer
                             //startActivity(new Intent(MainActivity.this, HomeActivity.class));
                             startActivity(new Intent(MainActivity.this, ClientHome.class));
@@ -262,8 +234,6 @@ public class MainActivity extends AppCompatActivity {
                 //If the user is not in our database call the register Dialog
                 checkRegisteredUser(user.getUid(),user.getDisplayName(), user.getEmail());
 
-                //Enable Button Sign out.
-                btnSignOut.setEnabled(true);
             }
             else {
                 Toast.makeText(this, "Something is wrong: \n"+resp.getError().getMessage(), Toast.LENGTH_LONG).show();

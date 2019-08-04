@@ -58,7 +58,9 @@ public class ProductDetail extends AppCompatActivity {
         clAddToOrder = findViewById(R.id.clCheckout);
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
 
-        if (product.getPictureURL() != null) {
+        imgImage.setImageResource(getResources().getIdentifier(product.getPictureURL(),"drawable", getPackageName()));
+
+        /*if (product.getPictureURL() != null) {
             AssetManager assetManager = getAssets();
 
             try {
@@ -71,7 +73,7 @@ public class ProductDetail extends AppCompatActivity {
                 ex.printStackTrace();
             }
         }
-
+*/
         /*
         // Display image or hide it if there is no image
         if (product.getImage() != null)

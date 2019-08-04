@@ -46,6 +46,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         TextView txtDescription = convertView.findViewById(R.id.txtDescription);
         TextView txtPrice = convertView.findViewById(R.id.txtTotalPrice);
 
+        imageView.setImageResource(mContext.getResources().getIdentifier(product.getPictureURL(),"drawable", mContext.getPackageName()));
+        /*
         if (product.getPictureURL() != null) {
             AssetManager assetManager = mContext.getAssets();
 
@@ -58,7 +60,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             {
                 ex.printStackTrace();
             }
-        }
+        }*/
         txtName.setText(product.getName());
         txtDescription.setText(product.getDescription());
         txtPrice.setText(Commom.getCurrencyFormatted(product.getPrice()));
