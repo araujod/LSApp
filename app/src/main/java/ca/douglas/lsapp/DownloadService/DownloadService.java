@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import ca.douglas.lsapp.ProcessProducts;
+import ca.douglas.lsapp.ProductDetailFragment;
 import ca.douglas.lsapp.Restaurants;
 
 import static ca.douglas.lsapp.Shared.Commom.AWS_URL;
@@ -38,7 +39,7 @@ public class DownloadService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        //String fields[] = {"table","column_name","new_value","where_value","where_key"};
+
         String fields[] = {"table","where_key","where_value","where_value2","column_name","new_value","id","method","setAction"};
         String params = putParamTogether(fields,intent);
 
@@ -64,6 +65,10 @@ public class DownloadService extends IntentService {
                 break;
             case "ProdAvailable":
                 broadcast.setAction(ProcessProducts.DBConnectivityProducts.STATUS_DONE);
+                break;
+
+            case "ProdDetailAvailable":
+                broadcast.setAction(ProductDetailFragment.DBConnectivityProductDetail.STATUS_DONE);
                 break;
         }
 

@@ -30,7 +30,7 @@ public class ProcessProducts extends AppCompatActivity {
         setContentView(R.layout.activity_process_products);
 
         Intent i = new Intent(ProcessProducts.this, DownloadService.class);
-        i.putExtra("table","");
+        i.putExtra("table","TESTE");
         i.putExtra("where_key","");
         i.putExtra("where_value",Commom.currentUser.getEmail());
         i.putExtra("where_value2","");
@@ -57,6 +57,8 @@ public class ProcessProducts extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(STATUS_DONE)) {
+//                final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+//                waitingDialog.dismiss();
 
                 String text = intent.getStringExtra("output_data");
 
@@ -139,9 +141,9 @@ public class ProcessProducts extends AppCompatActivity {
         // Unregister since the activity is paused.
         super.onPause();
         unregisterReceiver(receiver);
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
-        waitingDialog.show();
-        waitingDialog.setMessage("Please wait...");
+//        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+//        waitingDialog.show();
+//        waitingDialog.setMessage("Please wait...");
     }
 
     @Override
@@ -158,8 +160,8 @@ public class ProcessProducts extends AppCompatActivity {
         registerReceiver(receiver,filter);
 
         Log.d("DB - onReceive","IM HERE NEW!!");
-        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
-        waitingDialog.dismiss();
+//        final SpotsDialog waitingDialog = new SpotsDialog(ProcessProducts.this);
+//        waitingDialog.dismiss();
 
 
     }

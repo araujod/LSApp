@@ -48,7 +48,7 @@ public class DBUtil {
      * +-----------+----------------------------------+----------------------------------------------+-----------+----------------------------------+-------+-----------+
      * | ProductID | Name                             | Description                                  | Category  | PictureURL                       | Price | Highlight |
      * +-----------+----------------------------------+----------------------------------------------+-----------+----------------------------------+-------+-----------+
-     * |         1 | Bud Light                        | Bud Light Description                        | Beer      | BudLight.png                     |  2.99 | TRUE      |
+     * |         1 | Bud Light                        | Bud Light Description                        | Beer      | budlight.png                     |  2.99 | TRUE      |
      * |         2 | Coors Light                      | Coors Light Description                      | Beer      | CoorsLight.png                   |  2.99 | FALSE     |
      * |         3 | Corona Extra                     | Corona Extra Description                     | Beer      | CoronaExtra.png                  |  2.99 | FALSE     |
      * |         4 | Miller Lite                      | Miller Lite Description                      | Beer      | MillerLite.png                   |  2.99 | FALSE     |
@@ -56,7 +56,7 @@ public class DBUtil {
      */
     public static ArrayList<Product> getProductList() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(1, "Bud Light","Bud Light Description", "Beer","BudLight.png", 2.99f, true));
+        products.add(new Product(1, "Bud Light","Bud Light Description", "Beer", "drawable-v24/budlight.png", 2.99f, true));
         products.add(new Product(2, "Coors Light"," Coors Light Description", "Beer","CoorsLight.png", 2.99f, false));
         products.add(new Product(3, "Corona Extra","Corona Extra Description", "Beer","CoronaExtra.png", 2.99f, false));
         products.add(new Product(4, "Miller Lite","Miller Lite Description", "Beer","MillerLite.png", 2.99f, false));
