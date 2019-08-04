@@ -1,6 +1,8 @@
 package ca.douglas.lsapp.DB;
 
-public class OrderDetail {
+import java.io.Serializable;
+
+public class OrderDetail implements Serializable {
     /*
     OrderID     INT UNSIGNED NOT NULL,
     ProductID   INT UNSIGNED NOT NULL,

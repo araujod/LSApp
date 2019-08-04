@@ -56,11 +56,11 @@ public class DBUtil {
      */
     public static ArrayList<Product> getProductList() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(1, "Bud Light","Bud Light Description", "Beer", "drawable-v24/budlight.png", 2.99f, true));
-        products.add(new Product(2, "Coors Light"," Coors Light Description", "Beer","CoorsLight.png", 2.99f, false));
-        products.add(new Product(3, "Corona Extra","Corona Extra Description", "Beer","CoronaExtra.png", 2.99f, false));
-        products.add(new Product(4, "Miller Lite","Miller Lite Description", "Beer","MillerLite.png", 2.99f, false));
-        products.add(new Product(5, "Stella Artois","Stella Artois Description", "Beer","StellaArtois.png", 2.99f, false));
+        products.add(new Product(1, "Bud Light","Bud Light Description", "Beer","BudLight.PNG", 2.99f, true));
+        products.add(new Product(2, "Coors Light"," Coors Light Description", "Beer","CoorsLight.PNG", 2.99f, false));
+        products.add(new Product(3, "Corona Extra","Corona Extra Description", "Beer","CoronaExtra.PNG", 2.99f, false));
+        products.add(new Product(4, "Miller Lite","Miller Lite Description", "Beer","MillerLite.PNG", 2.99f, false));
+        products.add(new Product(5, "Stella Artois","Stella Artois Description", "Beer","StellaArtois.PNG", 2.99f, false));
 
 
         return products;
