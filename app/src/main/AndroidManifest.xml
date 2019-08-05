@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Checkout"></activity>
+        <activity android:name=".GetOrder"></activity>
+        <activity android:name=".History" />
+        <activity android:name=".Checkout" />
         <activity android:name=".StoreOrdersDetailFragment" />
         <activity android:name=".StoreOrdersMasterFragment" />
         <activity android:name=".ProcessStoreOrders" />
@@ -23,10 +25,6 @@
         <activity android:name=".ClientHome" />
         <activity android:name=".ProcessProducts" />
         <activity android:name=".StoreManagement" />
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".splash"
             android:theme="@style/SplashTheme">

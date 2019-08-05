@@ -13,6 +13,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import ca.douglas.lsapp.Checkout;
+import ca.douglas.lsapp.GetOrder;
+import ca.douglas.lsapp.History;
 import ca.douglas.lsapp.ProcessProducts;
 import ca.douglas.lsapp.ProductDetailFragment;
 import ca.douglas.lsapp.Restaurants;
@@ -79,9 +81,6 @@ public class DownloadService extends IntentService {
                 break;
             case "ShowProdAvailable":
                 broadcast.setAction(ShowProducts.DBConnectivityShowProducts.STATUS_DONE);
-                break;
-            case "Checkout":
-                broadcast.setAction(Checkout.DBConnectivityCheckout.STATUS_DONE);
                 break;
         }
 

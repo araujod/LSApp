@@ -19,8 +19,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.douglas.lsapp.DB.DBUtil;
 import ca.douglas.lsapp.DB.Order;
 import ca.douglas.lsapp.DB.OrderDetail;
+import ca.douglas.lsapp.DB.OrderHistory;
 import ca.douglas.lsapp.DB.Restaurant;
 import ca.douglas.lsapp.Shared.Commom;
 
@@ -32,6 +34,20 @@ public class OrderDetailView extends AppCompatActivity {
     private OrderDetailAdapter orderDetailAdapter;
     private boolean isOrderHistory;
     private TextView txtSubtotal;
+
+    public ArrayList<OrderDetail> GetOrderDetailListFromHistory(int orderID)
+    {
+        ArrayList<OrderDetail> orderDetails=new ArrayList<>();
+        for (OrderHistory orderHistory:Commom.orderHistories
+        ) {
+            if(orderHistory.getOrder().getOrderID()==orderID){
+                orderDetails = orderHistory.getOrderDetails();
+                break;
+            }
+        }
+
+        return orderDetails;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,26 +81,19 @@ public class OrderDetailView extends AppCompatActivity {
         //Adapter
         txtRestaurant.setText(restaurant.getName());
         listView.setAdapter(orderDetailAdapter);
-        setTotalPrice();
-        orderDetailAdapter.setOrderDetails(orderDetails);
 
-        //TODO: Order History
-       /* if (isOrderHistory) {
-            OrderDetailRepository orderDetailRepository = new OrderDetailRepository(getApplicationContext());
-            orderDetailRepository.findOrderDetailsByOrder(order.getId()).observe(this, new Observer<List<OrderDetail>>() {
-                @Override
-                public void onChanged(@Nullable List<OrderDetail> orderDetails) {
-                    OrderDetailsView.this.orderDetails = (ArrayList<OrderDetail>) orderDetails;
-                    setTotalPrice();
-                    orderDetailAdapter.setOrderDetails(orderDetails);
-                }
-            });
+
+        if (isOrderHistory) {
+            //TODO: Get OrderDetails BY ORDER ID
+            OrderDetailView.this.orderDetails = GetOrderDetailListFromHistory(order.getOrderID());
+            setTotalPrice();
+            orderDetailAdapter.setOrderDetails(orderDetails);
             clCheckout.setClickable(false);
-            Helper.hideComponentInConstraintLayout(clCheckout);
+            Commom.hideComponentInConstraintLayout(clCheckout);
         } else {
             setTotalPrice();
             orderDetailAdapter.setOrderDetails(orderDetails);
-        }*/
+        }
 
         clCheckout.setOnClickListener(new View.OnClickListener() {
             @Override

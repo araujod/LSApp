@@ -39,6 +39,15 @@ public class ClientHome extends AppCompatActivity {
 
         final Button btnSignOut = findViewById(R.id.btnLogout);
 
+        final Button btnHistory = findViewById(R.id.btnHistory);
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ClientHome.this, History.class);
+                startActivity(i);
+            }
+        });
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

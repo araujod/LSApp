@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                 Commom.currentUser.setName(edtName.getText().toString());
                                 Commom.currentUser.setBirthday(edtBirthdate.getText().toString());
                                 Commom.currentUser.setType(User.CLIENT_TYPE);//Always Client when created trough app
-                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                startActivity(new Intent(MainActivity.this, ClientHome.class));
                                 finish();
 
                             }

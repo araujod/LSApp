@@ -1,6 +1,11 @@
 package ca.douglas.lsapp.DB;
 
+import com.google.protobuf.Timestamp;
+import com.google.type.Date;
+
 import java.util.ArrayList;
+
+import ca.douglas.lsapp.Shared.Commom;
 
 public class DBUtil {
 
@@ -64,5 +69,43 @@ public class DBUtil {
 
 
         return products;
+    }
+
+    /**
+     *     OrderID     INT UNSIGNED NOT NULL,
+     *     ProductID   INT UNSIGNED NOT NULL,
+     *     Quantity    SMALLINT UNSIGNED NOT NULL,
+     *     SubTotal    FLOAT(8,2) not null,
+     */
+    public static ArrayList<OrderDetail> getOrderDetailList(int orderID) {
+        ArrayList<OrderDetail> orderDetails = new ArrayList<>();
+        orderDetails.add(new OrderDetail(orderID, 1,2,5.98f));
+        orderDetails.add(new OrderDetail(orderID, 3,2,5.98f));
+        orderDetails.add(new OrderDetail(orderID, 10,5,15f));
+        return orderDetails;
+    }
+
+    /**
+     *     OrderID     INT UNSIGNED NOT NULL AUTO_INCREMENT,
+     *     StoreID     INT UNSIGNED NOT NULL,
+     *     UserID      INT UNSIGNED NOT NULL,
+     *     DateTime    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     *     Total       FLOAT(8,2) NOT NULL,
+     *     Total_Items SMALLINT NOT NULL,
+     */
+    public static ArrayList<Order> getOrderList(String userID) {
+        ArrayList<Order> orders = new ArrayList<>();
+        /*orders.add(new Order(0, 1,userID, Commom.getDate(2019,11,11),9.9f,10,"4300 Parkwood"));
+        orders.add(new Order(1, 10,userID, Commom.getDate(2019,10,10),19.19f,1,"700 Royal Ave"));
+        orders.add(new Order(2, 20,userID, Commom.getDate(2019,9,9),29.29f,2,"100 Kingsway"));
+        */return orders;
+    }
+
+    public static Restaurant getStoreFromID(int storeID) {
+        return new Restaurant( storeID, "001LiquorStore@gmail.com", "778-837-4001", "COLLINGWOOD-KINGSWAY GLS 113","3436 KINGSWAY AVE, VANCOUVER, BC, Canada","store_logo",-123.0314733,49.2320012);
+    }
+
+    public static int getCountOrderDetail(int orderID) {
+        return 3;
     }
 }

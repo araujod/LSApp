@@ -15,10 +15,21 @@ public class Order implements Serializable {
     private int OrderID;
     private int StoreID;
     private String UserID;
-    private Date DateTime;
+    private String DateTime;
     private float Total;
     private int Total_Items;
     private String deliveryAddress;
+
+
+    public Order( int OrderID, int StoreID, String UserID, String DateTime, float Total, int Total_Items, String deliveryAddress) {
+        this.OrderID = OrderID;
+        this.StoreID = StoreID;
+        this.UserID = UserID;
+        this.DateTime = DateTime;
+        this.Total = Total;
+        this.Total_Items = Total_Items;
+        this.deliveryAddress = deliveryAddress;
+    }
 
     public Order(String deliveryAddress, String userId) {
         this.deliveryAddress = deliveryAddress;
@@ -44,11 +55,11 @@ public class Order implements Serializable {
         UserID = userID;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return DateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         DateTime = dateTime;
     }
 

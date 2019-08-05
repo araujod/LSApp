@@ -1,6 +1,8 @@
 package ca.douglas.lsapp.DB;
 
-public class OrderStatus {
+import java.io.Serializable;
+
+public class OrderStatus implements Serializable {
 
     private int storeID;
     private int orderID;
