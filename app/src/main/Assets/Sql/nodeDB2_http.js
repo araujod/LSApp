@@ -83,78 +83,205 @@ app.post('/GET_ONE', function (req, res) {
     });
  });
 
- 
+
+
+  app.post('/GET_ORDHISTORY', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+
+
+    let qString = "select t1.*, t2.*, t3.* from Orders t1 inner join Order_Detail t2 on t1.OrderID = t2.OrderID inner join Product t3 on t2.ProductID = t3.ProductID where t1.UserID='" + req.body.where_key + "'";
+
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+
+        res.send(JSON.stringify(rows));
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+ });
+
+
+
+
   app.post('/GET_PRODAV', function (req, res) {
     console.log("Got a GET request for the homepage");
     console.log(req);
-    
-    
+
+
     let qString = "select t3.*, t1.StoreID, t1.available from StoreProduct t1 inner join Store t2 on t1.StoreID = t2.StoreID inner join Product t3 on t1.ProductID = t3.ProductID where t2.Email='" + req.body.where_value + "'";
-    
+
     connection.query(qString, function(err, rows, fields) {
     if (!err) {
         console.log("Displaying all the rows");
-        
+
         res.send(JSON.stringify(rows));
     }
     else
         console.log('Error while performing Query.');
     });
  });
- 
+
+
+
+   app.post('/GET_PRODAVUSER', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+
+
+
+
+    let qString = "select t3.*, t1.StoreID, t1.available from StoreProduct t1 inner join Store t2 on t1.StoreID = t2.StoreID inner join Product t3 on t1.ProductID = t3.ProductID where t2.Email='" + req.body.where_value + "' AND Available=true";
+
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+
+        res.send(JSON.stringify(rows));
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+ });
+
+
+
+
  app.post('/GET_ALL', function (req, res) {
     console.log("Got a GET request for the homepage");
     console.log(req);
-    
+
     let qString = "SELECT * from " + req.body.table + " ";
-    
+
     connection.query(qString, function(err, rows, fields) {
     if (!err) {
         console.log("Displaying all the rows");
-        
+
         res.send(JSON.stringify(rows));
     }
     else
         console.log('Error while performing Query.');
     });
  });
- 
- 
- 
+
+
+
   app.post('/UPDATE', function (req, res) {
     console.log("Got a GET request for the homepage");
     console.log(req);
-   
-   
+
+
     let qString = "UPDATE " + req.body.table + " SET "+ req.body.column_name + " = '"+ req.body.new_value +"' WHERE " + req.body.where_key +" ='" + req.body.where_value + "'";
     connection.query(qString, function(err, rows, fields) {
     if (!err) {
         console.log("Displaying all the rows");
-        
+
         res.send(JSON.stringify(rows));
     }
     else
         console.log('Error while performing Query.');
     });
-    
+
  });
- 
- 
+
+
    app.post('/DELETE', function (req, res) {
     console.log("Got a GET request for the homepage");
     console.log(req);
-   
+
     let qString = "DELETE from " + req.body.table + " WHERE " + req.body.where_key +" ='" + req.body.where_value + "'";
-    
+
     connection.query(qString, function(err, rows, fields) {
     if (!err) {
         console.log("Displaying all the rows");
-        
+
         res.send(JSON.stringify(rows));
     }
     else
         console.log('Error while performing Query.');
     });
+
+ });
+
+  app.post('/DELETE', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+
+    let qString = "DELETE from " + req.body.table + " WHERE " + req.body.where_key +" ='" + req.body.where_value + "'";
+
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+
+        res.send(JSON.stringify(rows));
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+
+ });
+
+
+  app.post('/POST_ORDER', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    console.log(req);
+
+
+    var str = req.body.where_value;
+
+var words = str.split(',');
+
+var address="";
+
+for(var x=5;x<words.length;x++){
+	address+=words[x];
+}
+
+
+
+  console.log(address);
+
+for(var x=0;x<words.length;x++){
+console.log(words[x]);
+}
+
+
+    let qString = "INSERT INTO Orders (StoreID,UserID,Total,Total_Items,DeliveryAdd) VALUES (" +
+    words[0]+",'"+words[1]+"',"+words[3] +","+words[4] +","+ "'"+address+"'" +")" ;
+
+    console.log(qString);
+
+    connection.query(qString, function(err, rows, fields) {
+    if (!err) {
+        console.log("Displaying all the rows");
+
+
+       console.log(rows.insertId);
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+
+
+    let qLastResult= "SELECT LAST_INSERT_ID()";
+
+     connection.query(qLastResult, function(err, rows, fields) {
+    if (!err) {
+        console.log("LAST INSERT ID " + rows);
+
+
+
+
+    }
+    else
+        console.log('Error while performing Query.');
+    });
+
+
+
+
     
  });
  
