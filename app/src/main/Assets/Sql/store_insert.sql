@@ -46,25 +46,4 @@ INSERT INTO Store (Email,Phone, Name,Address, LogoURL, Lng, lat) VALUES
 
 
 
-  /**
-  CREATE TABLE Orders (
-      OrderID     INT UNSIGNED NOT NULL AUTO_INCREMENT,
-      StoreID     INT UNSIGNED NOT NULL,
-      UserID      VARCHAR(50) NOT NULL,
-      DateTime    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      Total       FLOAT(8,2) NOT NULL,
-      Total_Items SMALLINT NOT NULL,
-      DeliveryAdd VARCHAR(200) NOT NULL,
-      CONSTRAINT 	Orders_PK PRIMARY KEY (OrderID),
-     	CONSTRAINT 	Orders_Store_FK FOREIGN KEY (StoreID)
-                                      REFERENCES Store(StoreID)
-                                      ON DELETE CASCADE
-  );
-*/
-
-
-INSERT INTO Orders (StoreID,UserID,Total,Total_Items,DeliveryAdd) VALUES
-(1,1,20.00,1,"3408 Crowley Drive");
-
-
 
