@@ -3,7 +3,6 @@ package ca.douglas.lsapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -46,17 +45,8 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        Log.d("GETNAME",Commom.currentUser.getName());
-
-        String Name = Commom.currentUser.getName();
-
-
-        tvUserName.setText(Name);
+        tvUserName.setText(Commom.currentUser.getName());
         tvUserAddress.setText(Commom.currentUser.getAddress());
-
-
-
 
     }
 

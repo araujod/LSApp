@@ -156,29 +156,12 @@ public class ShowProducts extends AppCompatActivity {
 //                        Commom.products.add(prod);
 //
 
-                        Log.d("BOOLEAN",text);
+
 
                         productsAvailable.add(prod);
 
 
                     }
-
-
-//                    final ArrayList<String> temp = new ArrayList<>();
-//
-//                    for (int ind = 0; ind < Commom.products.size(); ind++) {
-//                        temp.add(Commom.products.get(ind).getName());
-//                    }
-
-//                    ProductMasterFragment m = (ProductMasterFragment) getSupportFragmentManager().findFragmentById(R.id.theNames);
-//                    // passing the data to the MasterFragment
-//
-//                    Log.d("onCreate","ProcessProducts");
-//
-//                    m.setTheData(temp);
-
-
-
 
 
 
@@ -214,11 +197,6 @@ public class ShowProducts extends AppCompatActivity {
                             startActivityForResult(i, CHECKOUT_ACTIVITY_REQUEST);
                         }
                     });
-
-
-
-
-
 
 
 

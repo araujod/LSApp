@@ -1,18 +1,26 @@
 package ca.douglas.lsapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,12 +29,18 @@ import java.util.Map;
 
 import ca.douglas.lsapp.DB.Order;
 import ca.douglas.lsapp.DB.OrderDetail;
+import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.Restaurant;
 import ca.douglas.lsapp.DB.User;
+import ca.douglas.lsapp.DownloadService.DownloadService;
 import ca.douglas.lsapp.Shared.Commom;
 import dmax.dialog.SpotsDialog;
 
 public class Checkout extends AppCompatActivity {
+
+    private Checkout.DBConnectivityCheckout receiver = new Checkout.DBConnectivityCheckout(this);
+
+
     private Order order;
     private ArrayList<OrderDetail> orderDetails;
     private Restaurant restaurant;
@@ -72,6 +86,7 @@ public class Checkout extends AppCompatActivity {
         } else {
             Commom.hideComponentInConstraintLayout(txtDate);
             txtProductsCount.setText(Integer.toString(orderDetails.size()));
+            order.setTotal_Items(orderDetails.size());
         }
 
         txtType.setText("Delivery");
@@ -99,11 +114,47 @@ public class Checkout extends AppCompatActivity {
                     waitingDialog.show();
                     waitingDialog.setMessage("Please wait...");
 
+
+                    String OrderDetail1="";
+                    for(int x=0 ; x<orderDetails.size();x++){
+
+                        OrderDetail1+=orderDetails.get(x).getValuesAsString();
+
+                    }
+
+
+
+
+                    //GET ALL THE PRODUCTS AVAILABLE FOR A GIVEN STORE
+                    Intent i2 = new Intent(Checkout.this, DownloadService.class);
+                    i2.putExtra("table","Orders");
+                    i2.putExtra("where_key","");
+                    i2.putExtra("where_value", order.getValuesAsStringOrder());
+                    i2.putExtra("where_value2",OrderDetail1);
+                    i2.putExtra("column_name","");
+                    i2.putExtra("new_value","");
+                    i2.putExtra("id","");
+                    i2.putExtra("method","POST_ORDER");
+                    i2.putExtra("setAction","Checkout");
+                    startService(i2);
+
+
+
+
+
+
+
+
+
+
+
+                    //TODO: INSERT ORODER
+                    //TODO: INSERT ORDER DETAILS
+
+
                     FirebaseFirestore db;
                     db = FirebaseFirestore.getInstance();
                     String orderCollection = "OrderStatus";
-                    //TODO: INSERT ORODER
-                    //TODO: INSERT ORDER DETAILS
 
                     //FIREBASE
                     Map<String, Object> user = new HashMap<>();
@@ -141,4 +192,78 @@ public class Checkout extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
+
+
+
+
+
+    public class DBConnectivityCheckout extends BroadcastReceiver {
+
+        private Context context;
+        Context c;
+        public static final String STATUS_DONE = "ALL_DONE";
+
+        public DBConnectivityCheckout(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(STATUS_DONE)) {
+
+
+                String text = intent.getStringExtra("output_data");
+
+                String columns[] = {"ProductID", "Name", "Description", "Category", "PictureURL", "Price", "Highlight", "StoreID", "available"};
+                Log.d("DB - onReceive", text);
+
+
+            }
+        }
+    }
+
+
+    @Override
+    protected void onPause() {
+        // Unregister since the activity is paused.
+        super.onPause();
+        unregisterReceiver(receiver);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // An IntentFilter can match against actions, categories, and data
+        IntentFilter filter = new IntentFilter(Checkout.DBConnectivityCheckout.STATUS_DONE);
+
+        //Intent registerReceiver (BroadcastReceiver receiver, IntentFilter filter)
+        //Register a BroadcastReceiver to be run in the main activity thread.
+        //The receiver will be called with any broadcast Intent that matches filter,
+        //in the main application thread.
+
+        registerReceiver(receiver,filter);
+
+        Log.d("DB - onReceive","IM HERE NEW!!");
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

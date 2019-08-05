@@ -52,4 +52,12 @@ public class OrderDetail implements Serializable {
     public void setSubTotal(float subTotal) {
         SubTotal = subTotal;
     }
+
+    public String getValuesAsString(){
+        String value;
+
+        value = "("+ ProductID +","+Quantity+","+SubTotal+"),;";
+
+        return value;
+    }
 }

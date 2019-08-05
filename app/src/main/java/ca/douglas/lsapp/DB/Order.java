@@ -83,4 +83,16 @@ public class Order implements Serializable {
     public void setOrderID(int orderID) {
         OrderID = orderID;
     }
+
+
+    public String getValuesAsStringOrder(){
+        String value;
+
+        value = StoreID +","+UserID+","+DateTime+","+Total+","+Total_Items+","+deliveryAddress;
+
+        return value;
+    }
+
+
+
 }
