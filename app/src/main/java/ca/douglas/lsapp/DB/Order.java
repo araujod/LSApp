@@ -88,7 +88,7 @@ public class Order implements Serializable {
     public String getValuesAsStringOrder(){
         String value;
 
-        value = StoreID +","+UserID+","+DateTime+","+Total+","+Total_Items+","+deliveryAddress;
+        value = StoreID +","+UserID+","+Total+","+Total_Items+","+deliveryAddress.replace(","," ");
 
         return value;
     }
