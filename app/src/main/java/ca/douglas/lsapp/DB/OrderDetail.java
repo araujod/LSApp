@@ -15,6 +15,14 @@ public class OrderDetail implements Serializable {
     private int Quantity;
     private float SubTotal;
 
+    public OrderDetail(int OrderID, int ProductID, int Quantity, float SubTotal ) {
+        this.Quantity = Quantity;
+        this.SubTotal = SubTotal;
+        this.ProductID = ProductID;
+        this.OrderID = OrderID;
+    }
+
+    //Current constructor being used
     public OrderDetail(float SubTotal, int ProductID) {
         Quantity = 1;
         this.SubTotal = SubTotal;

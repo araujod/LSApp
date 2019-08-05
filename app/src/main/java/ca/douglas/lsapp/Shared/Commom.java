@@ -8,8 +8,10 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
+import ca.douglas.lsapp.DB.OrderHistory;
 import ca.douglas.lsapp.DB.OrderStatus;
 import ca.douglas.lsapp.DB.Product;
 import ca.douglas.lsapp.DB.StoreProduct;
@@ -25,6 +27,8 @@ public class Commom {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
     public static final int DELIVERY_FEE = 5;
     public static ArrayList<Product> productListFromSelectedStore = new ArrayList<>();
+    public static ArrayList<OrderHistory> orderHistories = new ArrayList<>();
+
     /**
      * Round a float to a given number of digits
      *
@@ -49,6 +53,18 @@ public class Commom {
 
     public static String getDateFormatted(Date date) {
         return DATE_FORMAT.format(date);
+    }
+
+    public static Date getDate(int year, int month, int day) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.DAY_OF_MONTH, day);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 
     /**

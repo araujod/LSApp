@@ -80,7 +80,7 @@ public class Checkout extends AppCompatActivity {
         txtProductsCount = findViewById(R.id.txtProductsCount);
 
         if (isOrderHistory) {
-            txtDate.setText(Commom.getDateFormatted(order.getDateTime()));
+            txtDate.setText(order.getDateTime());
             txtBottomButton.setText("View products");
             txtProductsCount.setText(Integer.toString(order.getTotal_Items()));
         } else {
@@ -107,7 +107,7 @@ public class Checkout extends AppCompatActivity {
                     startActivity(i);
                 } else {
                     // Save order, order details and recommendation if there is a discount
-                    order.setDateTime(new Date());
+                    order.setDateTime("");
 
 
                     final SpotsDialog waitingDialog = new SpotsDialog(Checkout.this);
@@ -155,6 +155,9 @@ public class Checkout extends AppCompatActivity {
                     FirebaseFirestore db;
                     db = FirebaseFirestore.getInstance();
                     String orderCollection = "OrderStatus";
+
+                    //TODO: INSERT ORDER
+                    //TODO: INSERT ORDER DETAILS
 
                     //FIREBASE
                     Map<String, Object> user = new HashMap<>();
