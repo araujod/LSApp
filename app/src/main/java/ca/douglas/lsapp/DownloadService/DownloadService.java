@@ -82,6 +82,16 @@ public class DownloadService extends IntentService {
             case "ShowProdAvailable":
                 broadcast.setAction(ShowProducts.DBConnectivityShowProducts.STATUS_DONE);
                 break;
+            case "Checkout":
+                broadcast.setAction(Checkout.DBConnectivityCheckout.STATUS_DONE);
+                break;
+            case "History":
+                broadcast.setAction(History.DBConnectivityHistory.STATUS_DONE);
+                break;
+            case "GetOrder":
+                broadcast.setAction(GetOrder.DBConnectivityGetOrder.STATUS_DONE);
+                break;
+
         }
 
         Log.d("id",results);

@@ -38,7 +38,7 @@ public class DBUtil {
      * |       5 |         4 | TRUE      |
      * |       5 |         5 | TRUE      |
      */
-    public static ArrayList<StoreProduct> getStoreProductList() {
+   /* public static ArrayList<StoreProduct> getStoreProductList() {
         ArrayList<StoreProduct> productAvailable = new ArrayList<>();
         productAvailable.add(new StoreProduct(  5,1 , true ));
         productAvailable.add(new StoreProduct(  5,2 , false ));
@@ -59,7 +59,7 @@ public class DBUtil {
      * |         4 | Miller Lite                      | Miller Lite Description                      | Beer      | MillerLite.png                   |  2.99 | FALSE     |
      * |         5 | Stella Artois                    | Stella Artois Description                    | Beer      | StellaArtois.png                 |  2.99 | FALSE     |
      */
-    public static ArrayList<Product> getProductList() {
+    /*public static ArrayList<Product> getProductList() {
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product(1, "Bud Light","Bud Light Description", "Beer","budlight", 2.99f, true));
         products.add(new Product(2, "Coors Light"," Coors Light Description", "Beer","coorslight", 2.99f, false));
@@ -77,7 +77,7 @@ public class DBUtil {
      *     Quantity    SMALLINT UNSIGNED NOT NULL,
      *     SubTotal    FLOAT(8,2) not null,
      */
-    public static ArrayList<OrderDetail> getOrderDetailList(int orderID) {
+    /*public static ArrayList<OrderDetail> getOrderDetailList(int orderID) {
         ArrayList<OrderDetail> orderDetails = new ArrayList<>();
         orderDetails.add(new OrderDetail(orderID, 1,2,5.98f));
         orderDetails.add(new OrderDetail(orderID, 3,2,5.98f));
@@ -93,12 +93,12 @@ public class DBUtil {
      *     Total       FLOAT(8,2) NOT NULL,
      *     Total_Items SMALLINT NOT NULL,
      */
-    public static ArrayList<Order> getOrderList(String userID) {
+  /*  public static ArrayList<Order> getOrderList(String userID) {
         ArrayList<Order> orders = new ArrayList<>();
         /*orders.add(new Order(0, 1,userID, Commom.getDate(2019,11,11),9.9f,10,"4300 Parkwood"));
         orders.add(new Order(1, 10,userID, Commom.getDate(2019,10,10),19.19f,1,"700 Royal Ave"));
         orders.add(new Order(2, 20,userID, Commom.getDate(2019,9,9),29.29f,2,"100 Kingsway"));
-        */return orders;
+        return orders;
     }
 
     public static Restaurant getStoreFromID(int storeID) {
@@ -107,5 +107,5 @@ public class DBUtil {
 
     public static int getCountOrderDetail(int orderID) {
         return 3;
-    }
+    }*/
 }

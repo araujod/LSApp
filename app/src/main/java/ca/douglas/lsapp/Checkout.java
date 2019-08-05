@@ -139,19 +139,6 @@ public class Checkout extends AppCompatActivity {
                     startService(i2);
 
 
-
-
-
-
-
-
-
-
-
-                    //TODO: INSERT ORODER
-                    //TODO: INSERT ORDER DETAILS
-
-
                     FirebaseFirestore db;
                     db = FirebaseFirestore.getInstance();
                     String orderCollection = "OrderStatus";
